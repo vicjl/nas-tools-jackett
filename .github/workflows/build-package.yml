@@ -88,7 +88,7 @@ jobs:
           cd package
           pwd
           ls -all
-          pyinstaller nas-tools.spec
+          pyinstaller nas-tools-jackett.spec
           mv /home/runner/work/nas-tools-jackett/nas-tools-jackett/nas-tools-jackett/package/dist/nas-tools /home/runner/work/nas-tools-jackett/nas-tools-jackett/nas-tools-jackett/package/dist/nas-tools-jackett.linux.amd64
           ls -all /home/runner/work/nas-tools-jackett/nas-tools-jackett/nas-tools-jackett/package/dist
         shell: pwsh
@@ -163,7 +163,7 @@ jobs:
       - name: Set Up Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Ppackage through pyinstaller
+      - name: Package through pyinstaller
         run: |
           mkdir rootfs
           docker buildx build --platform linux/arm64 --file ./package/builder/alpine.Dockerfile --build-arg branch=master --output type=local,dest=./rootfs .
@@ -211,7 +211,7 @@ jobs:
           cp -r ./config/. $Python_ROOT_DIR/lib/python3.10/site-packages/config/
           cp -r ./scripts/. $Python_ROOT_DIR/lib/python3.10/site-packages/scripts/
           cd package
-          pyinstaller nas-tools.spec
+          pyinstaller nas-tools-jackett.spec
           mv ./dist/nas-tools ./dist/nas-tools-jackett.macos
           pwd
           ls -all ./dist/
