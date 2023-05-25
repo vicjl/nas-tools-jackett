@@ -21,7 +21,7 @@ RUN cp ./package/rely/hook-cn2an.py ${py_site_packages}/PyInstaller/hooks/ && \
     cp -r ./config/. ${py_site_packages}/config/ && \
     cp -r ./scripts/. ${py_site_packages}/scripts/
 WORKDIR /nas-tools/package
-RUN pyinstaller nas-tools.spec
+RUN pyinstaller nas-tools-jackett.spec
 RUN ls -al /nas-tools/package/dist/
 WORKDIR /rootfs
 RUN cp /nas-tools/package/dist/nas-tools .
