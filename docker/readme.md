@@ -11,13 +11,16 @@
 - 可以以非root用户执行任务，降低程序权限和潜在风险；
 
 - 可以设置文件掩码权限umask。
-
+  
 ## 功能：
 
-NAS媒体库管理工具。
-此版本在官方版本的基础上，恢复了磁力下载/索引器等功能。
-版本：3.2.3
-自用，禁止传播
+- NAS媒体库管理工具。
+
+- 此版本在官方版本的基础上，恢复了磁力下载/索引器等功能。
+
+- 版本：3.2.3
+
+- 自用，禁止传播
 
 ## 创建
 
@@ -43,7 +46,7 @@ docker run -d \
     -e UMASK=000  `# 掩码权限，默认000，可以考虑设置为022` \
     -e NASTOOL_AUTO_UPDATE=false `# 如需在启动容器时自动升级程程序请设置为true` \
     -e NASTOOL_CN_UPDATE=false `# 如果开启了容器启动自动升级程序，并且网络不太友好时，可以设置为true，会使用国内源进行软件更新` \
-    mikutechnology/nas-tools-jackett:latest
+    mikutechnology/nas-tools-jackett
 ```
 
 如果你访问github的网络不太好，可以考虑在创建容器时增加设置一个环境变量`-e REPO_URL="https://ghproxy.com/https://github.com/mikutechnology/nas-tools-jackett.git" \`。

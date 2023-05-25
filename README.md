@@ -21,15 +21,18 @@ API: http://localhost:3000/api/v1/
 ## 功能：
 
 NAS媒体库管理工具。
+
 此版本在官方版本的基础上，恢复了磁力下载/索引器等功能。
+
 版本：3.2.3
+
 自用，禁止传播
 
 
 ## 安装
 ### 1、Docker
 ```
-docker pull mikutechnology/nas-tools-unlock:latest
+docker pull mikutechnology/nas-tools-jackett:latest
 ```
 教程见 [这里](docker/readme.md) 。
 
