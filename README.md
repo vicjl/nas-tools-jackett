@@ -3,7 +3,7 @@
 
 Docker：https://hub.docker.com/r/mikutechnology/nas-tools-jackett
 
-Wiki：https://t.me/NAStool_wiki
+Wiki：https://wiki.nastool.org/
 
 API: http://localhost:3000/api/v1/
 
