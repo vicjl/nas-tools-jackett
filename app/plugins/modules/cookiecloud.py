@@ -266,7 +266,7 @@ class CookieCloud(_IPluginModule):
             if not content_list:
                 continue
             # 域名
-            domain_url = ".".join(domain)
+            url = ".".join(domain)
             # 只有cf的cookie过滤掉
             cloudflare_cookie = True
             for content in content_list:
@@ -282,7 +282,7 @@ class CookieCloud(_IPluginModule):
                  if content.get("name") and content.get("name") not in self._ignore_cookies]
             )
             # 查询站点
-            site_info = self.sites.get_sites_by_suffix(domain_url)
+            site_info = self.sites.get_sites_by_suffix(url)
             if site_info:
                 # 检查站点连通性
                 success, _, _ = self.sites.test_connection(site_id=site_info.get("id"))
@@ -290,20 +290,7 @@ class CookieCloud(_IPluginModule):
                     # 已存在且连通失败的站点更新Cookie
                     self.sites.update_site_cookie(siteid=site_info.get("id"), cookie=cookie_str)
                     update_count += 1
-            else:
-                # 查询是否在索引器范围
-                indexer_info = self.indexer.get_indexer(domain_url)
-                if indexer_info:
-                    # 支持则新增站点
-                    site_pri = self.sites.get_max_site_pri() + 1
-                    self.sites.add_site(
-                        name=indexer_info.get("name"),
-                        site_pri=site_pri,
-                        signurl=indexer_info.get("domain"),
-                        cookie=cookie_str,
-                        rss_uses='T'
-                    )
-                    add_count += 1
+
         # 发送消息
         if update_count or add_count:
             msg = f"更新了 {update_count} 个站点的Cookie数据，新增了 {add_count} 个站点"
