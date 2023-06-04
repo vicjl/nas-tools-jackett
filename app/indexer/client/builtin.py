@@ -117,14 +117,17 @@ class BuiltinIndexer(_IIndexClient):
                     ret_indexers.append(indexer)
         # 公开站点
         if public:
-            for site_url in self.user.get_public_sites():
-                indexer = self.user.get_indexer(url=site_url)
-                if check and (not indexer_sites or indexer.id not in indexer_sites):
+            for indexer in IndexerHelper().get_all_indexers():
+                if not indexer.get("public"):
                     continue
-                if indexer.domain not in _indexer_domains:
-                    _indexer_domains.append(indexer.domain)
-                    ret_indexers.append(indexer)
-        return ret_indexers
+                if indexer_id and indexer.get("id") == indexer_id:
+                    return IndexerConf(datas=indexer)
+                if check and (not indexer_sites or indexer.get("id") not in indexer_sites):
+                    continue
+                if indexer.get("domain") not in _indexer_domains:
+                    _indexer_domains.append(indexer.get("domain"))
+                    ret_indexers.append(IndexerConf(datas=indexer))
+        return None if indexer_id else ret_indexers
 
     def search(self, order_seq,
                indexer,
